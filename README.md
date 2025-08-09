@@ -39,3 +39,8 @@ Open `http://localhost:3000` and use the UI to upload a `.md` file or paste Mark
 - Max upload/body size is 100MB by default. You can adjust in `src/index.js`.
 - The server launches a single headless Chromium instance and reuses it for conversions.
 - The frontend is served from `server/public` by the same server (no CORS hassle). 
+
+## License
+
+This project is licensed under the GPL-3.0-or-later license.
+See the `LICENSE` file for full text or visit https://www.gnu.org/licenses/gpl-3.0.en.html. 

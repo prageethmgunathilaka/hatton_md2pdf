@@ -9,7 +9,7 @@
     "dev": "nodemon --watch src src/index.js"
   },
   "author": "",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=18"
   },

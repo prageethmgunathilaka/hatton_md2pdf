@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Workspace root for Markdown-to-PDF service and frontend.",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "dev": "npm --prefix server run dev",
     "start": "npm --prefix server run start",
