@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown → PDF</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">M→PDF</div>
+        <div class="brand-copy">
+          <h1 class="title">Markdown → PDF</h1>
+          <p class="tagline">Craft professional PDFs from Markdown — fast, reliable, and secure.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    <form id="convert-form" class="card" aria-label="Markdown to PDF converter">
+      <div class="controls">
+        <div class="segmented" role="tablist" aria-label="Input mode">
+          <button type="button" class="tab seg active" data-tab="file-tab" role="tab" aria-selected="true">Upload file</button>
+          <button type="button" class="tab seg" data-tab="text-tab" role="tab" aria-selected="false">Paste text</button>
+        </div>
+      </div>
+
+      <div id="file-tab" class="tab-content active" role="tabpanel" aria-labelledby="Upload file">
+        <div id="dropzone" class="dropzone" tabindex="0" aria-label="Drag and drop Markdown file here or click to browse">
+          <div class="dz-icon" aria-hidden="true">⬆</div>
+          <div class="dz-text">
+            <strong>Drag & drop</strong> your Markdown file here, or <span class="linkish">browse</span>
+            <div class="hint">Supported: .md, .markdown, .txt</div>
+          </div>
+          <input id="file" name="file" type="file" accept=".md,.markdown,.txt,.mkd,.mdown,.mkdn,.mdtxt" />
+        </div>
+        <div class="file-meta"><span id="file-name" class="file-name">No file selected</span></div>
+      </div>
+
+      <div id="text-tab" class="tab-content" role="tabpanel" aria-labelledby="Paste text">
+        <label for="text" class="label">Paste Markdown</label>
+        <textarea id="text" name="text" rows="16" placeholder="# Hello\n\nWrite your Markdown here..." aria-label="Paste Markdown"></textarea>
+      </div>
+
+      <div class="options">
+        <div class="field">
+          <label for="filename">Output filename</label>
+          <input id="filename" name="filename" type="text" placeholder="document" />
+        </div>
+        <div class="field">
+          <label for="title">Document title (optional)</label>
+          <input id="title" name="title" type="text" placeholder="Document" />
+        </div>
+        <div class="field">
+          <label for="format">Page size</label>
+          <select id="format" name="format" aria-label="Page size">
+            <option value="A4" selected>A4</option>
+            <option value="Letter">Letter</option>
+            <option value="Legal">Legal</option>
+            <option value="A3">A3</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="convert" type="submit">Convert to PDF</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Hattonn pvt. Ltd. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="/health" target="_blank" rel="noopener">Service health</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html> 

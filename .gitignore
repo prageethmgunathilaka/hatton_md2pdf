@@ -1,0 +1,7 @@
+node_modules/
+server/node_modules/
+server/package-lock.json
+server/.cache/
+server/.local-chromium/
+server/tmp/
+.DS_Store 

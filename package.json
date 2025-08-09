@@ -1,0 +1,11 @@
+{
+  "name": "md2pdf",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Workspace root for Markdown-to-PDF service and frontend.",
+  "scripts": {
+    "dev": "npm --prefix server run dev",
+    "start": "npm --prefix server run start",
+    "install:server": "cd server && npm install"
+  }
+} 
