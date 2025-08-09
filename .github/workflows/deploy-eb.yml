@@ -1,0 +1,55 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  workflow_dispatch: {}
+
+concurrency:
+  group: eb-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Prepare bundle (server only)
+        run: |
+          cd server
+          rm -rf node_modules
+          zip -r ../bundle.zip . -x "node_modules/*" ".git/*"
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          region: ${{ vars.AWS_REGION }}
+          application_name: ${{ vars.EB_APP_NAME }}
+          environment_name: ${{ vars.EB_ENV_NAME }}
+          version_label: ${{ github.sha }}
+          deployment_package: bundle.zip
+          existing_bucket_name: ${{ vars.EB_S3_BUCKET }}
+          aws_access_key: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws_session_token: ${{ env.AWS_SESSION_TOKEN }}
+
+      - name: Post-deploy info
+        run: |
+          echo "Deployed version ${{ github.sha }} to EB app ${{ secrets.EB_APP_NAME }} / env ${{ secrets.EB_ENV_NAME }}" 
