@@ -44,3 +44,17 @@ Open `http://localhost:3000` and use the UI to upload a `.md` file or paste Mark
 
 This project is licensed under the GPL-3.0-or-later license.
 See the `LICENSE` file for full text or visit https://www.gnu.org/licenses/gpl-3.0.en.html. 
+
+## Docker (optional)
+
+Build and run locally:
+
+```bash
+cd server
+# build
+docker build -t md2pdf:latest .
+# run
+docker run --rm -p 3000:3000 md2pdf:latest
+```
+
+Open http://localhost:3000 
